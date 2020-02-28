@@ -2,9 +2,9 @@ from flask import Flask ,request, jsonify,Response
 
 app = Flask(__name__)
 
-@app.route
+@app.route('/')
 def test():
-    return {'message':'from ec2'}
+    return {'message':'deployed using CodeDeploy on Ubuntu ec2 instance'}
 
 if __name__ == "__main__":
     app.run()
