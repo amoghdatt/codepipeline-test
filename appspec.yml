@@ -4,8 +4,5 @@ files:
   - source: /run.py
     destination: /home/ubuntu/
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies.sh
-    - location: scripts/packages.sh
-  AfterInstall:
+  ApplicationStart:
     - location: scripts/run_app.sh
