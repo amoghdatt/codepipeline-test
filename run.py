@@ -49,6 +49,9 @@ def test():
 def test2():
     return {'message':gcd.BankTransactionId}
 
+@app.route('/staging')
+def test3():
+    return {'message':'response from staging'}
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
