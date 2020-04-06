@@ -20,6 +20,10 @@ app = Flask(__name__)
 def test():
     return {'message':df_sample.shape}
 
+@app.route('/test')
+def test2():
+    return {'message':'deployed to ebs using codepipeline'}
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
