@@ -53,5 +53,9 @@ def test2():
 def test3():
     return {'message':'response from staging'}
 
+@app.route('/production')
+def test4():
+    return {'message':'response from production'}
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
