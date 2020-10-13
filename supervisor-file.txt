@@ -1,0 +1,8 @@
+[program:predicon]
+directory=/home/ubuntu/
+command=/home/ubuntu/.virtualenvs/dev/bin/gunicorn --bind unix:/tmp/uwmodel.sock -w 4 run:app
+environment=PATH= "/home/ubuntu/.virtualenvs/dev/bin"
+autostart=true
+autorestart=true
+stderr_logfile=/home/ubuntu/logs/err.log
+stdout_logfile=/home/ubuntu/logs/out.log

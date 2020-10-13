@@ -1,0 +1,45 @@
+#redirect port 80 to port 441
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/server_nameo/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name server.predicon.io;
+
+        location / {
+                return 301 https://server_name$request_uri;
+        }
+}
+
+server {
+        listen 443 ssl;
+        server_name name of server;
+        ssl_protocols TLSv1.1 TLSv1.2;
+
+        #letsencrypt certificate
+        ssl_certificate path/to/fulchainpem/fullchain.pem;
+        ssl_certificate_key path/to/private-key/privkey.pem;
+
+        #client certificates
+        ssl_client_certificate path/to/client/certs/api_gateway.crt;
+        ssl_verify_client optional;
+
+        location / {
+
+        include proxy_params;
+        proxy_pass http://unix:/tmp/uwmodel.sock;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_http_version 1.1;
+        proxy_redirect off;
+        proxy_buffering off;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 86400;
+
+        }
+
+}
